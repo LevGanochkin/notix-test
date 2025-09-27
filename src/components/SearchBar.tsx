@@ -1,16 +1,13 @@
-import { useState } from 'react';
 import type { ChangeEvent, FC } from 'react';
 
 interface SearchBarProps {
+  value: string;
   onSearch: (arg: string) => void;
 }
 
-export const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
-  const [value, setValue] = useState('');
-
+export const SearchBar: FC<SearchBarProps> = ({ value, onSearch }) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    setValue(newValue);
     onSearch(newValue);
   };
 

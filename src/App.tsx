@@ -1,21 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { SearchBar } from './components/SearchBar';
 import { SearchResult } from './components/SearchResult';
-import { searchQuotes } from './api';
-import type { SearchResultItem } from './types';
+import { useDebounce } from './hooks/useDebounce';
+import { useSearch } from './hooks/useSearch';
 
 function App() {
-  const [results, setResults] = useState<SearchResultItem[]>();
-  const handleSearch = (searchQuery: string) => {};
+  const [value, setValue] = useState('');
+  const debouncedValue = useDebounce(value);
+  const { result, isLoading, error } = useSearch(debouncedValue);
 
-  useEffect(() => {
-    searchQuotes('a').then((res) => setResults(res));
-  }, []);
+  const handleSearch = (searchQuery: string) => {
+    setValue(searchQuery);
+  };
 
   return (
     <>
-      <SearchBar onSearch={handleSearch} />
-      {results && <SearchResult data={results} />}
+      <SearchBar value={value} onSearch={handleSearch} />
+      {error && <p>{error.message}</p>}
+      {isLoading ? <p>Loading, please wait...</p> : <SearchResult data={result} />}
     </>
   );
 }

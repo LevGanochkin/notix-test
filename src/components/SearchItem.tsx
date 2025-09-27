@@ -1,11 +1,10 @@
 import type { FC } from 'react';
 import type { SearchResultItem } from '../types';
 
-export const SearchItem: FC<SearchResultItem> = ({ id, quote, author }) => {
+export const SearchItem: FC<SearchResultItem> = ({ id, name }) => {
   return (
     <li key={id}>
-      <p>{quote}</p>
-      <p>{author}</p>
+      <p>{name}</p>
     </li>
   );
 };
