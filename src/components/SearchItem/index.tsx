@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import type { SearchResultItem } from '../types';
+import type { SearchResultItem } from '../../types';
 
 export const SearchItem: FC<SearchResultItem> = ({ id, name }) => {
   return (

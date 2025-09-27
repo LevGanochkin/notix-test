@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { SearchResultItem } from '../types';
 import { searchProducts } from '../api';
+import { urlParams } from '../utils/urlParams';
 
 interface SearchHookResult {
   result: SearchResultItem[];
@@ -14,15 +15,30 @@ export const useSearch = (debouncedValue: string): SearchHookResult => {
   const [error, setError] = useState<Error>();
 
   useEffect(() => {
-    if (debouncedValue) {
-      setIsloading(true);
-      searchProducts(debouncedValue)
-        .then(setResult)
-        .catch(setError)
-        .finally(() => setIsloading(false));
-    } else {
+    const controller = new AbortController();
+
+    if (!debouncedValue) {
       setResult([]);
+      urlParams.set('search', '');
+      return;
     }
+
+    setIsloading(true);
+    searchProducts(debouncedValue, { signal: controller.signal })
+      .then((res) => {
+        setResult(res);
+        urlParams.set('search', debouncedValue);
+      })
+      .catch((err) => {
+        if (err.name !== 'AbortError') {
+          setError(err);
+        }
+      })
+      .finally(() => {
+        setIsloading(false);
+      });
+
+    return () => controller.abort();
   }, [debouncedValue]);
 
   return { result, isLoading, error };

@@ -8,10 +8,11 @@ const fetchWrapper: FetchWrapperType = async (url, options) => {
   return response.json();
 };
 
-export const searchProducts = async (query: string): Promise<SearchResultItem[]> => {
+export const searchProducts = async (query: string, options?: RequestInit): Promise<SearchResultItem[]> => {
   try {
     const result = await fetchWrapper<SearchResultPayload>(
       `https://dummyjson.com/recipes/search?q=${encodeURIComponent(query)}`,
+      options,
     );
     return result.recipes;
   } catch (e) {

@@ -13,6 +13,7 @@ export const SearchBar: FC<SearchBarProps> = ({ value, onSearch }) => {
 
   return (
     <input
+      name="search-input"
       className="search-input"
       type="text"
       placeholder="Enter your query..."

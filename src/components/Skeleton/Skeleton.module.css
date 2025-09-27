@@ -1,0 +1,34 @@
+/* Skeleton.module.css */
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.line {
+  height: 12px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e2e2e2 50%, #f0f0f0 75%);
+  border-radius: 4px;
+  animation: pulse 1.5s infinite;
+}
+
+.lineShort {
+  height: 12px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e2e2e2 50%, #f0f0f0 75%);
+  border-radius: 4px;
+  animation: pulse 1.5s infinite;
+  width: 60%;
+}
+
+@keyframes pulse {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
