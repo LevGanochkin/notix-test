@@ -28,6 +28,7 @@ export const useSearch = (debouncedValue: string): SearchHookResult => {
     searchProducts(debouncedValue, { signal: controller.signal })
       .then((res) => {
         setResult(res);
+        setError(null);
         urlParams.set('search', debouncedValue);
       })
       .catch((err) => {
@@ -36,7 +37,9 @@ export const useSearch = (debouncedValue: string): SearchHookResult => {
         }
       })
       .finally(() => {
-        setIsloading(false);
+        if (!controller.signal.aborted) {
+          setIsloading(false);
+        }
       });
 
     return () => controller.abort();
