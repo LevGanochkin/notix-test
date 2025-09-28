@@ -5,12 +5,10 @@ interface ErrorMessageProps {
   error: Error;
 }
 
-const ErrorMessage: FC<ErrorMessageProps> = ({ error }) => {
+export const ErrorMessage: FC<ErrorMessageProps> = ({ error }) => {
   return (
     <p role="alert" className={styles.error}>
       {error.message}
     </p>
   );
 };
-
-export default ErrorMessage;

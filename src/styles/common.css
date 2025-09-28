@@ -8,12 +8,13 @@
 body {
   display: flex;
   justify-content: center;
-  margin-top: 32px;
+  margin-top: 128px;
 }
 
-#root {
+.main-section {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 250px;
+  width: 500px;
+  min-height: 500px;
 }

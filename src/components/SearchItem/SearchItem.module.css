@@ -1,3 +1,38 @@
-.test {
-  background-color: #fff;
+/* SearchItem.module.css */
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: rgba(25, 118, 210, 0.08);
+    outline: 0;
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.marker {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(25, 118, 210, 0.438);
+  flex-shrink: 0;
+}
+
+.name,
+.cuisine {
+  font-size: 15px;
+  color: #1f2937;
+  margin: 0;
 }

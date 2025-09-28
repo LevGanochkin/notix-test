@@ -1,4 +1,5 @@
 import type { ChangeEvent, FC } from 'react';
+import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
   value: string;
@@ -14,7 +15,7 @@ export const SearchBar: FC<SearchBarProps> = ({ value, onSearch }) => {
   return (
     <input
       name="search-input"
-      className="search-input"
+      className={styles.search}
       type="text"
       placeholder="Enter your query..."
       value={value}

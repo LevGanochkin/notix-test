@@ -4,12 +4,14 @@ import { searchProducts } from '../api';
 import { urlParams } from '../utils/urlParams';
 
 interface SearchHookResult {
+  // result: SearchResultItem[] | null;
   result: SearchResultItem[];
   isLoading: boolean;
   error?: Error;
 }
 
 export const useSearch = (debouncedValue: string): SearchHookResult => {
+  // const [result, setResult] = useState<SearchResultItem[] | null>(null);
   const [result, setResult] = useState<SearchResultItem[]>([]);
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [error, setError] = useState<Error>();
@@ -18,7 +20,9 @@ export const useSearch = (debouncedValue: string): SearchHookResult => {
     const controller = new AbortController();
 
     if (!debouncedValue) {
+      // setResult(null);
       setResult([]);
+      setError(undefined);
       urlParams.set('search', '');
       return;
     }
@@ -27,6 +31,7 @@ export const useSearch = (debouncedValue: string): SearchHookResult => {
     searchProducts(debouncedValue, { signal: controller.signal })
       .then((res) => {
         setResult(res);
+        setError(undefined);
         urlParams.set('search', debouncedValue);
       })
       .catch((err) => {

@@ -4,8 +4,8 @@ import { SearchResult } from './components/SearchResult';
 import { useDebounce } from './hooks/useDebounce';
 import { useSearch } from './hooks/useSearch';
 import { urlParams } from './utils/urlParams';
-import ErrorMessage from './components/ErrorMessage';
-import Skeleton from './components/Skeleton';
+import { Loader } from './components/Loader';
+import { ErrorMessage } from './components/ErrorMessage';
 
 function App() {
   const [value, setValue] = useState(urlParams.get('search'));
@@ -17,11 +17,10 @@ function App() {
   };
 
   return (
-    <>
+    <section className="main-section">
       <SearchBar value={value} onSearch={handleSearch} />
-      {!result && error && <ErrorMessage error={error} />}
-      {isLoading ? <Skeleton /> : <SearchResult data={result} />}
-    </>
+      {isLoading ? <Loader /> : result ? <SearchResult data={result} /> : error && <ErrorMessage error={error} />}
+    </section>
   );
 }
 

@@ -1,3 +1,20 @@
-.test {
-  background-color: #fff;
+.search {
+  width: 100%;
+  max-width: 250px;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  align-self: center;
+
+  &:hover {
+    border-color: #999;
+  }
+
+  &:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.25);
+  }
 }
