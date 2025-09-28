@@ -8,7 +8,7 @@ interface SearchResultProps {
 }
 
 export const SearchResult: FC<SearchResultProps> = ({ data }) => {
-  if (data && data.length === 0) {
+  if (data.length === 0) {
     return <p className={styles.empty}>No recipes found :(</p>;
   }
 

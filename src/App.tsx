@@ -19,7 +19,9 @@ function App() {
   return (
     <section className="main-section">
       <SearchBar value={value} onSearch={handleSearch} />
-      {isLoading ? <Loader /> : result ? <SearchResult data={result} /> : error && <ErrorMessage error={error} />}
+      {isLoading && <Loader />}
+      {!isLoading && result && <SearchResult data={result} />}
+      {!isLoading && !result && error && <ErrorMessage error={error} />}
     </section>
   );
 }
