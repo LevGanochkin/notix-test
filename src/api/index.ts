@@ -1,8 +1,8 @@
 import type { SearchResultItem, SearchResultPayload } from '../types';
 
-type FetchWrapperType = <T>(url: string, options?: RequestInit) => Promise<T>;
+type FetchType = <T>(url: string, options?: RequestInit) => Promise<T>;
 
-const fetchWrapper: FetchWrapperType = async (url, options) => {
+const fetchResponseToJSON: FetchType = async (url, options) => {
   const response = await fetch(url, options);
   if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
   return response.json();
@@ -10,7 +10,7 @@ const fetchWrapper: FetchWrapperType = async (url, options) => {
 
 export const searchProducts = async (query: string, options?: RequestInit): Promise<SearchResultItem[]> => {
   try {
-    const result = await fetchWrapper<SearchResultPayload>(
+    const result = await fetchResponseToJSON<SearchResultPayload>(
       `https://dummyjson.com/recipes/search?q=${encodeURIComponent(query)}`,
       options,
     );

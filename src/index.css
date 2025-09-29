@@ -10,11 +10,3 @@ body {
   justify-content: center;
   margin-top: 128px;
 }
-
-.main-section {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 500px;
-  min-height: 500px;
-}

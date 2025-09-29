@@ -16,3 +16,9 @@
   padding: 8px;
   margin-top: 128px;
 }
+
+@media (max-width: 500px) {
+  .list {
+    padding: 10px 0;
+  }
+}

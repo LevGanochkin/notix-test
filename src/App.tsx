@@ -6,6 +6,7 @@ import { useSearch } from './hooks/useSearch';
 import { urlParams } from './utils/urlParams';
 import { Loader } from './components/Loader';
 import { ErrorMessage } from './components/ErrorMessage';
+import styles from './App.module.css';
 
 function App() {
   const [value, setValue] = useState(urlParams.get('search'));
@@ -17,7 +18,7 @@ function App() {
   };
 
   return (
-    <section className="main-section">
+    <section className={styles.searchSection}>
       <SearchBar value={value} onSearch={handleSearch} />
       {isLoading && <Loader />}
       {!isLoading && result && <SearchResult data={result} />}

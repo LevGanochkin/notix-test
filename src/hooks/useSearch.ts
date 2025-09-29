@@ -15,6 +15,7 @@ export const useSearch = (debouncedValue: string): SearchHookResult => {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
+    urlParams.set('search', debouncedValue);
     const controller = new AbortController();
 
     if (!debouncedValue) {
@@ -29,7 +30,6 @@ export const useSearch = (debouncedValue: string): SearchHookResult => {
       .then((res) => {
         setResult(res);
         setError(null);
-        urlParams.set('search', debouncedValue);
       })
       .catch((err) => {
         if (err.name !== 'AbortError') {
