@@ -1,73 +1,49 @@
-# React + TypeScript + Vite
+# Тестовое задание для Notix.Games
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Задание
 
-Currently, two official plugins are available:
+Реализовать страницу поиска с отображением результатов.  
+Пользователи вводят строку в поле поиска, а результаты подтягиваются по мере ввода.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Требования:
 
-## React Compiler
+- При вводе текста в поле поиска отправляется запрос к API (или эмуляции).
+- Строка поиска отображается в query-параметрах URL.
+- Если пользователь вводит новый запрос до ответа предыдущего, устаревший ответ не должен затирать актуальные данные.
+- Важно поддержать хороший UX:
+  - производительность,
+  - простые и удобные контролы,
+  - понятный вывод результатов поиска.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Технические требования:
 
-## Expanding the ESLint configuration
+- **React**, **TypeScript**.
+- Консистентность в компонентах и стилях.
+- Использовать минимум сторонних библиотек, по-возможности не использовать, кроме обязательных.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Стек технологий
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- React + TypeScript
+- Vite
+- CSS Modules
+- mockAPI – [dummyJSON](https://dummyjson.com/)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Развертывание проекта
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Клонировать репозиторий
+2. Установить зависимости: npm install
+3. Запустить проект в dev-режиме: npm run dev
+4. Запустить сборку билда: npm run build
+5. Запустить production preview: npm run preview
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## Что можно улучшить?
+
+1. Виртуальный список в случае прихода большого объема данных (react-virtualize)
+2. Работа с параметрами адресной строки в реальном проекте делается через роутер. Здесь для наглядности и оптимальности (см. технические требования) использован API браузера.
+3. Архитектура не походит на реальный проект, но я постарался выбрать что-то среднее между удобством и реальной разработкой. На реальном проекте это была бы отдельная фича/виджет/модуль
